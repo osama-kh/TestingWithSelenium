@@ -14,7 +14,7 @@ import java.util.List;
 
 class Restaurant extends WebPageBAse {
     String  CREATE_BUTTON ="//app-main//div[@style=\"text-align: center;\"]//button";
-    String TABLE="//div[@id=\"main-table\"]//table";
+    String TABLE="//div[@id=\"main-table\"]//table//tbody";
 
     WebElement create_button;
     WebElement Table;
@@ -31,7 +31,7 @@ class Restaurant extends WebPageBAse {
 
         Table = new WebDriverWait(driver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions
-                        .elementToBeClickable(By.xpath(TABLE)));
+                        .presenceOfElementLocated(By.xpath(TABLE)));
     }
     public String button_string(){
         return create_button.getText();
@@ -44,37 +44,66 @@ class Restaurant extends WebPageBAse {
 
     }
 
-    ArrayList <ArrayList> elemnts_in_table(){
-        ArrayList <String> data = new ArrayList<String>();
+    List<List<String>>  elemnts_in_table(){
+//
+//        List<List<String>> tableData = new ArrayList<>();
+//        /////////////////////////////
+//
+////        ArrayList <String> data = new ArrayList<String>();
+////        String temp="";
+////        ArrayList<ArrayList> Elements=new  ArrayList<ArrayList>();
+////        List<WebElement> rows = Table.findElements(By.tagName("tr"));
+//
+//
+//        List<WebElement> rows =  new WebDriverWait(driver,  Duration.ofSeconds(10))
+//                .until(ExpectedConditions
+//                        .presenceOfAllElementsLocatedBy(By.tagName("tr")));
+//
+//
+//// Iterate through each row and print the data in the columns
+//        for (WebElement row : rows) {
+//            List<WebElement> cols =  new WebDriverWait(driver,  Duration.ofSeconds(10))
+//                    .until(ExpectedConditions
+//                            .presenceOfAllElementsLocatedBy(By.tagName("td")));
+////            System.out.println(row.getText() + "\t");
+//            List<String> rowData = new ArrayList<>();
+//
+//            for (WebElement col : cols) {
+//                rowData.add(col.getText());
+//
+////                data.add(col.getText());
+////                temp+= col.getText()+" ";
+////                System.out.print(col.getText() + "\t");
+//
+//            }
+//            tableData.add(rowData);
+//
+//            System.out.println();
+//        }
+//
+//        return tableData;
 
-        ArrayList<ArrayList> Elements=new  ArrayList<ArrayList>();
-//        List<WebElement> rows = Table.findElements(By.tagName("tr"));
-        List<WebElement> rows =  new WebDriverWait(driver,  Duration.ofSeconds(10))
+        System.out.println(Table.getText());
+        List<List<String>> tableData = new ArrayList<>();
+        List<WebElement> f =  new WebDriverWait(driver,  Duration.ofSeconds(10))
                 .until(ExpectedConditions
                         .presenceOfAllElementsLocatedBy(By.tagName("tr")));
-// Iterate through each row and print the data in the columns
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        List<WebElement> rows = Table.findElements(By.tagName("tr"));
         for (WebElement row : rows) {
-            List<WebElement> cols =  new WebDriverWait(driver,  Duration.ofSeconds(10))
-                    .until(ExpectedConditions
-                            .presenceOfAllElementsLocatedBy(By.tagName("td")));
-//            System.out.println(row.getText() + "\t");
-
-            for (WebElement col : cols) {
-                data.add(col.getText());
-//                System.out.print(col.getText() + "\t");
-
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            List<String> rowData = new ArrayList<>();
+            for (WebElement cell : cells) {
+                rowData.add(cell.getText());
             }
-            System.out.println();
+            tableData.add(rowData);
         }
-        
-        Elements.add(data);
+        System.out.println(tableData);
 
-
-
-        return Elements;
+        return tableData;
+    }
     }
 
 
 
 
-}
