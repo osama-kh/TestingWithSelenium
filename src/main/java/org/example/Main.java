@@ -10,21 +10,6 @@ import static infra.HttpFacade.*;
 public class Main {
     public static void main(String[] args) {
 
-//        ResponseData Json = GET(ResponseData.class,"https://us-central1-testomate-test.cloudfunctions.net/api/restaurants");
-//        System.out.println(Json.getData().get(1));
-
-//        ResponseData Json1 = POST(ResponseData.class,"https://us-central1-testomate-test.cloudfunctions.net/api/reset");
-//        System.out.println(Json1.isSuccess());
-//        for(Place place : Json1.getData()){
-//
-//            System.out.println("ID: " + place.getId());
-//            System.out.println("Name: " + place.getName());
-//            System.out.println("Address: " + place.getAddress());
-//            System.out.println("Score: " + place.getScore());
-//
-//
-//
-//        }
         String requestBody_post = "{\"id\": 121212, \"name\": \"Shalom's place\", \"score\": 3.2, \"address\": \"The street 1\"}";
         String requestBody_patch ="{\"address\": \"Hashalom 22 Tel Aviv\"}";
 

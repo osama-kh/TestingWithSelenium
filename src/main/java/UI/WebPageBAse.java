@@ -1,4 +1,4 @@
-package org.example;
+package UI;
 import org.openqa.selenium.WebDriver;
 
 public abstract class WebPageBAse {

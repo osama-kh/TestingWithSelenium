@@ -1,12 +1,11 @@
-package org.example;
+package UI;
 
+import UI.WebPageBAse;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.sql.Driver;
-
-class Restaurant extends WebPageBAse{
+class Restaurant extends WebPageBAse {
     String  CREATE_BUTTON ="//app-main//div[@style=\"text-align: center;\"]//button";
     String TABLE="table table-striped";
 
