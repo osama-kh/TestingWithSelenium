@@ -32,8 +32,11 @@ public class Add_New_Restaurant_Test {
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         driver.navigate().refresh();
-       Restaurant place = new Restaurant(driver);
-        System.out.println(place.button_string());
+        Restaurant place = new Restaurant(driver);
+//        for (String i:place.elemnts_in_table()){
+//            System.out.println(i);
+//        }
+        System.out.println(place.elemnts_in_table());
 
 
 
@@ -42,7 +45,7 @@ public class Add_New_Restaurant_Test {
     @After
     public void finishing(){
 
-
+    driver.close();
 
 
     }
