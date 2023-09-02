@@ -1,5 +1,5 @@
 package UI;
-import API.responses.RequestController;
+import API.responses.ResponseController;
 import logic.ResponseData;
 import org.junit.After;
 import org.junit.Assert;
@@ -30,7 +30,7 @@ public class Delete_a_Restaurant_Test {
     public void Delete_a_restaurant_TEST(){
         int id = 124;
 
-        ResponseData js2 = RequestController.DELETE_Delete_a_restaurant(id);
+        ResponseData js2 = ResponseController.DELETE_Delete_a_restaurant(id);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 //        driver.navigate().refresh();

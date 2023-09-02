@@ -1,5 +1,5 @@
 package UI;
-import API.responses.RequestController;
+import API.responses.ResponseController;
 import logic.ResponseData;
 import org.junit.After;
 import org.junit.Assert;
@@ -28,11 +28,11 @@ public class Edit_a_Restaurant_Test {
     @Test
     public void add_new_restaurant_TEST(){
         Integer old_id=124;
-        Integer id = null;
+        Integer id = 124;
         String name = "Sh place";
         String address = "kali";
-        Double score= null;
-        ResponseData js2 = RequestController.PATCH_Update_a_property_of_a_restaurant(old_id,id,name,score,address);
+        Double score= 3.5;
+        ResponseData js2 = ResponseController.PATCH_Update_a_property_of_a_restaurant(old_id,null,name,null,address);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         driver.navigate().refresh();

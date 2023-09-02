@@ -25,77 +25,9 @@ public class HttpFacade {
 
     private static int status;
 
-
-
     public enum HttpMethod {
         GET, POST,DELETE,PATCH
     }
-    public static <T> T GET(Class<T> clz,String URL){
-        String result = null;
-        HttpGet request = new HttpGet(URL);
-        try(CloseableHttpClient httpClient = HttpClients.createDefault()){
-            try(CloseableHttpResponse response = httpClient.execute(request)){
-                HttpEntity entity =response.getEntity();
-                result = EntityUtils.toString(entity);
-                status= response.getCode();
-
-            }
-
-        } catch (IOException | ParseException e ) {
-            throw new RuntimeException(e);
-        }
-        Gson gson=new Gson();
-        try{
-            System.out.println(result);
-            return  gson.fromJson(result, clz);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
-
-    public static <T> T POST(Class<T> clz,String URL) {
-        String result = null;
-        String acceptHeader = "application/json";
-        String contentTypeHeader = "application/json";
-        String requestBody = "{\"id\": 121212, \"name\": \"Shalom's place\", \"score\": 3.2, \"address\": \"The street 1\"}";
-
-        HttpPost request = new HttpPost(URL);
-        request.setHeader("accept", acceptHeader);
-        request.setHeader("Content-Type", contentTypeHeader);
-        request.setEntity(new StringEntity(requestBody, ContentType.parse("UTF-8")));
-
-
-
-        HttpEntity entity;
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            try (CloseableHttpResponse response = httpClient.execute(request)) {
-                entity = response.getEntity();
-                result = EntityUtils.toString(entity);
-
-            }
-
-        } catch (IOException | ParseException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(result);
-        Gson gson = new Gson();
-        try {
-            return gson.fromJson(result  , clz);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
-
-
-
-
-
     public static <T> T makeHttpRequest(Class<T> clz, String URL, HttpMethod method, String requestBody) {
         String result = null;
         CloseableHttpResponse response = null;

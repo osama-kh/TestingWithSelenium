@@ -1,6 +1,5 @@
 package org.example;
 
-import API.responses.RequestController;
 import com.google.gson.Gson;
 import infra.HttpFacade;
 import logic.Place;

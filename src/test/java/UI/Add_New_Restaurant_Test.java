@@ -1,7 +1,7 @@
 package UI;
 
 
-import API.responses.RequestController;
+import API.responses.ResponseController;
 import logic.ResponseData;
 import org.junit.After;
 import org.junit.Assert;
@@ -34,7 +34,7 @@ public class Add_New_Restaurant_Test {
         String name = "Sh place";
         String address = "jk 50";
         double score= 3.5;
-        ResponseData js2 = RequestController.POST_Creates_a_new_restaurant(id,name,score,address);
+        ResponseData js2 = ResponseController.POST_Creates_a_new_restaurant(id,name,score,address);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         driver.navigate().refresh();
