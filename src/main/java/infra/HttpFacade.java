@@ -57,7 +57,7 @@ public class HttpFacade {
                 response = httpClient.execute(request);
 
             }
-
+            status=response.getCode();
             HttpEntity entity = response.getEntity();
             result = EntityUtils.toString(entity);
         } catch (IOException | ParseException e) {

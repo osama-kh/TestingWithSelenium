@@ -1,13 +1,19 @@
 package UI;
 import API.responses.ResponseController;
+import infra.HttpFacade;
 import logic.ResponseData;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class Delete_a_Restaurant_Test {
@@ -43,10 +49,31 @@ public class Delete_a_Restaurant_Test {
             }
 
         }
+        Assert.assertEquals(HttpFacade.getStatus(),200 | 201);
         Assert.assertTrue(checker);
 
     }
+    @After
+    public void takeScreenshot() {
+        String testName="Delete a restaurant Test";
+        if (HttpFacade.getStatus()!=200){
+            File screenshot =
+                    ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try {
+                // Save the screenshot to a file
+                FileUtils.copyFile(screenshot,
+                        new File("screenshots/" + testName + ".png"));
+                System.out.println("Screenshot saved to: "
+                        + "screenshots/"
+                        + testName + ".png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }
+        // Take a screenshot of the page
+
+    }
     //close the driver after finishing the test
     @After
     public void finishing(){
