@@ -10,8 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-public class Delete_a_Restaurant_Test {
-
+public class Edit_a_Restaurant_Test {
     WebDriver driver;
 
     @Before
@@ -27,22 +26,28 @@ public class Delete_a_Restaurant_Test {
 
 
     @Test
-    public void Delete_a_restaurant_TEST(){
-        int id = 124;
-
-        ResponseData js2 = RequestController.DELETE_Delete_a_restaurant(id);
+    public void add_new_restaurant_TEST(){
+        Integer old_id=124;
+        Integer id = null;
+        String name = "Sh place";
+        String address = "kali";
+        Double score= null;
+        ResponseData js2 = RequestController.PATCH_Update_a_property_of_a_restaurant(old_id,id,name,score,address);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-//        driver.navigate().refresh();
+        driver.navigate().refresh();
         Restaurant place = new Restaurant(driver);
-        boolean checker=true;
+
         for(List<String> i:place.elemnts_in_table()){
             if(i.get(1)==""+id){
-            checker=false;
+                Assert.assertEquals(i.get(1),""+id);
+                Assert.assertEquals(i.get(2),name);
+                Assert.assertEquals(i.get(3),address);
+                Assert.assertEquals(i.get(4),""+score);
             }
 
         }
-        Assert.assertTrue(checker);
+
 
     }
 
@@ -50,8 +55,6 @@ public class Delete_a_Restaurant_Test {
     public void finishing(){
         driver.close();
     }
-
-
 
 
 

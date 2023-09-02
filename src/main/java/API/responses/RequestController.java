@@ -25,7 +25,7 @@ public class RequestController {
         return (T) Json;
     }
 
-    public static <T> T PATCH_Update_a_property_of_a_restaurant(int OldId, Integer new_id ,String new_name ,Double new_score , String new_Address){
+    public static <T> T PATCH_Update_a_property_of_a_restaurant(Integer OldId, Integer new_id ,String new_name ,Double new_score , String new_Address){
 
 ////        "{
 ////        \"id\": "+id+"
