@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Delete_a_Restaurant_Test {
 
     WebDriver driver;
-
+    //to initialize the driver and open the targeted url
     @Before
     public void run_driver(){
         System.setProperty("webdriver.chrome.driver",
@@ -25,6 +25,7 @@ public class Delete_a_Restaurant_Test {
 
     }
 
+    //to test api response of deleting specific restaurant if equals the page data
 
     @Test
     public void Delete_a_restaurant_TEST(){
@@ -36,7 +37,7 @@ public class Delete_a_Restaurant_Test {
 //        driver.navigate().refresh();
         Restaurant place = new Restaurant(driver);
         boolean checker=true;
-        for(List<String> i:place.elemnts_in_table()){
+        for(List<String> i:place.elements_in_table()){
             if(i.get(1)==""+id){
             checker=false;
             }
@@ -46,6 +47,7 @@ public class Delete_a_Restaurant_Test {
 
     }
 
+    //close the driver after finishing the test
     @After
     public void finishing(){
         driver.close();
