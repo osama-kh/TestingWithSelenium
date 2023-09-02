@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.List;
 
+//Place class to store the data of restaurant that included in a Http request and response using Gson library
 @Data
 public class Place {
     private Integer id;
