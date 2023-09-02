@@ -18,16 +18,19 @@ import java.io.IOException;
 import java.net.URLConnection;
 
 public class HttpFacade {
-
+    //getStatus: a method that returns that status code of a request
     public static int getStatus() {
         return status;
     }
 
     private static int status;
-
+    //Http requests enum
     public enum HttpMethod {
         GET, POST,DELETE,PATCH
     }
+
+    //makeHttpRequest: It's a generic method that send Http requests to our Api using specific URL
+    //  requestBody that contains the body of request
     public static <T> T makeHttpRequest(Class<T> clz, String URL, HttpMethod method, String requestBody) {
         String result = null;
         CloseableHttpResponse response = null;
